@@ -1,0 +1,8 @@
+<div class="col-md-6 col-md-offset-2">
+<%= simple_form_for @post do |f| %>
+	<%= f.input :title, label: "Name of Company/Ticker", maxlength: 15 %>
+	<%= f.input :description, label: "Long/Short - Why?", maxlength: 500 %>
+	<%= f.input :image, as: :file %>
+	<%= f.button :submit %>
+<% end %>
+</div>

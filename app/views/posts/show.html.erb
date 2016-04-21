@@ -1,0 +1,25 @@
+<div class="col-md-8 col-md-offset-2">
+	<div class="post-show">
+		<h2><%= @post.title %></h2>
+		<p class="post-posted-by">Posted by <%= link_to @post.user.username, user_path(id: @post.user) %> <%= time_ago_in_words(@post.created_at) %> ago</p>
+		<p class="post-desc"><%= @post.description %></p>
+
+		<%= image_tag @post.image.url(:medium) %>
+
+		<h3 class="comment-section-header">Comments:</h3>
+		<!-- renders the _comment.html.erb partial file. -->
+		<p><%= render @post.comments %></p>
+
+		<h4 class="reply-to-post">Reply to Message:</h4>
+		<!-- renders the comments form -->
+		<%= render 'comments/form' %>
+
+		<div class="links btn-group">
+			<%= link_to "Back", root_path, class: "btn btn-default" %>
+			<% if @post.user_id == current_user.id %>
+				<%= link_to "Edit", edit_post_path(@post), class: "btn btn-default" %>
+				<%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default" %>
+			<% end %>
+		</div>
+	</div>
+</div>

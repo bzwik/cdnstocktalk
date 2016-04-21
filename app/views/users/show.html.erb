@@ -1,0 +1,10 @@
+<h1><%= @user.username %></h1>
+<h3><%= @user.email %></h3>
+
+<%= link_to "Edit Account", edit_user_registration_path, class: "btn-custom" %></li>
+
+<h4> My Posts </h4>
+<% @user_posts.each do |post| %>
+	<ul><%= link_to post.title, post_path(post) %></ul>
+		<%= time_ago_in_words(post.created_at) %> ago
+<% end %>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CDNstocktalk</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+	<nav class="navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<%= link_to "Canadian Stock Talk", root_path, class: "navbar-brand" %>
+			</div>
+			<ul class="nav navbar-nav">
+			<% if user_signed_in? %>
+					<h8><li>Username: <%= link_to current_user.username, user_path(id: current_user) %></li></h8>
+					<li><%= link_to "Share a Stock Idea", new_post_path, class: "btn-custom" %></li>
+			<% end %>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<% if user_signed_in? %>
+					<h8><li>Hello, <%= current_user.email %></li></h8>
+					<li><%= link_to "View Profile", user_path(id: current_user), class: "btn-custom" %></li>
+					<li><%= link_to "Sign Out", destroy_user_session_path, class: "btn-custom", method: :delete %></li>
+				<% else %>	
+					<li><%= link_to "Log In", new_user_session_path, class: "btn-custom" %></li>
+					<li><%= link_to "Sign Up", new_user_registration_path, class: "btn-custom" %></li>
+				<% end %>
+			</ul>
+		</div>
+	</nav>
+
+	<p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+<div class="container">  
+<%= yield %>
+</div>
+
+</body>
+</html>
