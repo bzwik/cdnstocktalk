@@ -1,21 +1,25 @@
-<div class="row">
-<%= form_tag search_posts_path, method: :get, class: "navbar-form navbar-center", role: "search" do %>
-	<p>
-	<%= text_field_tag :search, params[:search], class: "form-control navbar-center" %>
-	<%= submit_tag "Search", name: nil, class: "btn btn-default" %>
-	</p>
-<% end %>
-</div>
-
 <% @posts.each do |post| %>
 	<div class="col-md-4">
 		<div class="post">
-			<h2 class="post-title"><%= post.title %></h2>
+			<h3 class="post-title"><ins><%= post.title %></ins></h3>
+			By:<strong><%= link_to post.user.username, user_path(id: post.user) %></strong><br>
 			<%= link_to "View Post", post, class: "btn-custom" %><br>
 			<br>
-			<a href="<%= post_url(post) %>"><%= image_tag post.image.url(:thumb)%><br></a>
-			<br>
-			<h7><%= link_to post.user.username, user_path(id: post.user) %></h7><br>
+			<a href="<%= post_url(post) %>"><%= image_tag post.image.url(:thumb), class: "img-rounded" %></a><br>
+			<%= link_to like_post_path(post), class: "like", method: :put do %>
+				<button type="button" class="btn btn-success" aria-label="Left Align">
+					<span class="glyphicon glyphicon-thumbs-up glyphicon-align-center" aria-hidden="true"></span>
+					<span class="badge"><%= post.get_upvotes.size %></span>
+				</button>
+			<% end %>
+			<%= link_to unlike_post_path(post), class: "like", method: :put do %>
+				<button type="button" class="btn btn-danger" aria-label="Right Align">
+					<span class="glyphicon glyphicon-thumbs-down glyphicon-align-center" aria-hidden="true"></span>
+					<span class="badge"><%= post.get_downvotes.size %></span>
+				</button>
+				<br>
+			<% end %>
+
 			<h7>Posted <%= time_ago_in_words(post.created_at) %> ago</h7>
 		</div>
 	</div>

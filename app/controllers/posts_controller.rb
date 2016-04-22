@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :find_post, only: [:show, :update, :edit, :destroy]
+  before_action :find_post, only: [:show, :update, :edit, :destroy, :upvote, :downvote]
   before_action :authenticate_user!, except: [:index]
 
   def search
@@ -44,6 +44,19 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     redirect_to root_path
+  end
+
+  #upvote_from user
+  #downvote_from user
+
+  def upvote
+    @post.upvote_from current_user
+    redirect_to posts_path
+  end
+
+  def downvote
+    @post.downvote_from current_user
+    redirect_to posts_path
   end
   
   private

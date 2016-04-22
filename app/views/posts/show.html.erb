@@ -4,7 +4,21 @@
 		<p class="post-posted-by">Posted by <%= link_to @post.user.username, user_path(id: @post.user) %> <%= time_ago_in_words(@post.created_at) %> ago</p>
 		<p class="post-desc"><%= @post.description %></p>
 
-		<%= image_tag @post.image.url(:medium) %>
+		<%= image_tag @post.image.url(:medium), class: "img-rounded" %>
+		<br>
+		<br>
+		<%= link_to like_post_path(@post), class: "like", method: :put do %>
+				<button type="button" class="btn btn-success" aria-label="Left Align">
+					<span class="glyphicon glyphicon-thumbs-up glyphicon-align-center" aria-hidden="true"></span>
+					<span class="badge"><%= @post.get_upvotes.size %></span>
+				</button>
+			<% end %>
+			<%= link_to unlike_post_path(@post), class: "like", method: :put do %>
+				<button type="button" class="btn btn-danger" aria-label="Left Align">
+					<span class="glyphicon glyphicon-thumbs-down glyphicon-align-center" aria-hidden="true"></span>
+					<span class="badge"><%= @post.get_downvotes.size %></span>
+				</button>
+			<% end %>
 
 		<h3 class="comment-section-header">Comments:</h3>
 		<!-- renders the _comment.html.erb partial file. -->

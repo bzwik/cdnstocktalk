@@ -4,10 +4,12 @@
 	</div>
 </div>
 
-<div class="col-md-4 col-md-offset-2 left">
-<h4 align="left"> My Posts </h4>
+	<div class="col-md-4 col-md-offset-2 left">
+	<h3 align="left"><ins> My Posts </ins></h3>
+		<ol>
 		<% @user_posts.each do |post| %>
-			<ul><%= link_to post.title, post_path(post) %></ul>
-			<%= time_ago_in_words(post.created_at) %> ago
+			<li><%= link_to post.title, post_path(post) %></li>
+			<%= time_ago_in_words(post.created_at) %> ago <br>
+			<br>
 		<% end %>
-</div>
+	</div>

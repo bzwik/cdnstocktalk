@@ -1,0 +1,17 @@
+<h2> Search Results </h2>
+<%= link_to "Back", root_path, class: "btn btn-default" %><br>
+
+<% @posts.each do |post| %>
+	<div class="col-md-4">
+		<div class="post">
+			<h2 class="post-title"><%= post.title %></h2>
+			<%= link_to "View Post", post, class: "btn-custom" %><br>
+			<br>
+			<a href="<%= post_url(post) %>"><%= image_tag post.image.url(:thumb)%><br></a>
+			<br>
+			<h7><%= link_to post.user.username, user_path(id: post.user) %></h7><br>
+			<h7>Posted <%= time_ago_in_words(post.created_at) %> ago</h7>
+		</div>
+	</div>
+<% end %>
+
