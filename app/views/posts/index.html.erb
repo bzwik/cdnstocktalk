@@ -1,4 +1,5 @@
-<ul class="col-md-9">
+<br>
+<ul align="center";
   <%= form_tag search_posts_path, method: :get, class: "navbar-form", role: "search" do %>
     <p>
       <%= text_field_tag :search, params[:search], class: "form-control navbar-center" %>
@@ -11,10 +12,11 @@
 	<div class="col-md-4">
 		<div class="post">
 			<h3 class="post-title"><ins><%= post.title %></ins></h3>
-			By:<strong><%= link_to post.user.username, user_path(id: post.user) %></strong><br>
-			<%= link_to "View Post", post, class: "btn-custom" %><br>
+			<center>By: <strong><%= link_to post.user.username, user_path(id: post.user) %></strong></center>
+			<center><%= link_to "View Post", post, class: "btn-custom" %></center><br>
+			<a href="<%= post_url(post) %>"><center><%= image_tag post.image.url(:thumb), class: "img-rounded" %></center></a>
 			<br>
-			<a href="<%= post_url(post) %>"><%= image_tag post.image.url(:thumb), class: "img-rounded" %></a><br>
+			<center>
 			<%= link_to like_post_path(post), class: "like", method: :put do %>
 				<button type="button" class="btn btn-success" aria-label="Left Align">
 					<span class="glyphicon glyphicon-thumbs-up glyphicon-align-center" aria-hidden="true"></span>
@@ -28,8 +30,8 @@
 				</button>
 				<br>
 			<% end %>
-
-			<h7>Posted <%= time_ago_in_words(post.created_at) %> ago</h7>
+			</center>
+			<center><h7>Posted <%= time_ago_in_words(post.created_at) %> ago</h7></center>
 		</div>
 	</div>
 <% end %>

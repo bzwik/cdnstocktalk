@@ -9,22 +9,22 @@
 <body>
 
 	<nav class="navbar-default navbar-fixed-top">
-		<div class="container-fluid">
+		<div class="container">
 			<div class="navbar-header">
 				<%= link_to "Canadian Stock Talk", root_path, class: "navbar-brand" %>
 			</div>
 			<ul class="nav navbar-nav">
 			<% if user_signed_in? %>
 					<h8><li>Hello, <%= link_to current_user.username, user_path(id: current_user) %></li></h8>
-					<li><%= link_to "Share a Stock Idea", new_post_path, class: "btn-sm btn-default" %></li>
+					<li><%= link_to "Share a Stock Idea", new_post_path, class: "btn btn-default" %></li>
 			<% end %>
 			</ul>
 			
 			<ul class="nav navbar-nav navbar-right">
 				<% if user_signed_in? %>
-					<h8><li>Email: <%= current_user.email %></li></h8>
-					<li><%= link_to "View Profile", user_path(id: current_user), class: "btn-sm btn-default" %></li>
-					<li><%= link_to "Sign Out", destroy_user_session_path, class: "btn-sm btn-default", method: :delete %></li>
+					<h8><li>Email: <strong><%= current_user.email %></strong></li></h8>
+					<li><%= link_to "View Profile", user_path(id: current_user), class: "btn btn-default" %></li>
+					<li><%= link_to "Sign Out", destroy_user_session_path, class: "btn btn-default", method: :delete %></li>
 				<% else %>
 					<li><%= link_to "Log In", new_user_session_path, class: "btn btn-default" %></li>
 					<li><%= link_to "Sign Up", new_user_registration_path, class: "btn btn-default" %></li>
